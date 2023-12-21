@@ -1,0 +1,32 @@
+s1 = input("enter the starting date in the format of dd/mm/yy: ")
+s2 = input("enter the ending date in the format of dd/mm/yy: ")
+S1 = s1.split("/")
+S2 = s2.split("/")
+s = 0
+mod = {'01':31,'02':28,'03':31,'04':30,'05':31,'06':30,'07':31,'08':31,'09':30,'10':31,'11':30,'12':31}
+med = {'01':31,'02':29,'03':31,'04':30,'05':31,'06':30,'07':31,'08':31,'09':30,'10':31,'11':30,'12':31}
+if S1[2] == S2[2]:
+  if S1[1] == S2[1]:
+    dif = abs(int(S1[0])-int(S2[0]))
+    print("Remaining days:",dif)
+  else:
+    j = abs(int(S1[1])-int(S2[1]))
+    if int(S1[2])%2 == 0:
+      s += med[S1[1]] -int(S1[1])
+    else:
+      s += mod[S1[1]] -int(S1[1])
+    s += int(S2[1])
+    print("Remaining ",j-1,"months",s,"days","left")
+else:
+  if int(S1[2])%2 == 0:
+     s += med[S1[1]] -int(S1[1])
+  else:
+     s += mod[S1[1]] -int(S1[1])
+  s += int(S2[1])
+  j = abs(12 - int(S1[1]) + int(S2[1]))
+  y = int(S2[2]) - int(S1[2])
+  if j-1<12 and y ==1:
+    print("Remaining ",j-1,"months",s,"days","left")
+  elif j-1 >= 12 :
+    j = j-11
+    print("Remaining ",y,"years",j,"months",s,"days","left")
